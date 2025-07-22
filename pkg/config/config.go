@@ -13,7 +13,9 @@ import (
 type Config struct {
 	IndentSpaces    int    `json:"indent_spaces"`
 	SortKeys        bool   `json:"sort_keys"`
+	SilentMode      bool   `json:"silent_mode"`
 	CopyToClipboard bool   `json:"copy_to_clipboard"`
+	SaveToDir       bool   `json:"save_to_dir"`
 	OutputDir       string `json:"output_dir"`
 	TrustAllURLs    bool   `json:"trust_all_urls"`
 	MaxMemoryMB     int    `json:"max_memory_mb"`

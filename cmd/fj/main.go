@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"os"
 	"path/filepath"
 	"strings"
@@ -96,7 +97,9 @@ func parseFlags(defaultCfg config.Config) config.Config {
 	// Define flags
 	indentPtr := flag.Int("indent", defaultCfg.IndentSpaces, "Number of spaces for indentation")
 	sortPtr := flag.Bool("sort", defaultCfg.SortKeys, "Sort object keys")
+	silentPtr := flag.Bool("silent", defaultCfg.SilentMode, "Silent mode")
 	clipboardPtr := flag.Bool("clipboard", defaultCfg.CopyToClipboard, "Copy result to clipboard")
+	saveDirPtr := flag.Bool("save-to-dir", defaultCfg.SaveToDir, "Save to directory")
 	outputDirPtr := flag.String("outdir", defaultCfg.OutputDir, "Output directory for saved files")
 	trustPtr := flag.Bool("trust-all", defaultCfg.TrustAllURLs, "Trust all URLs without prompting")
 	versionPtr := flag.Bool("version", false, "Show version information")
@@ -122,7 +125,9 @@ func parseFlags(defaultCfg config.Config) config.Config {
 	cfg := config.Config{
 		IndentSpaces:    *indentPtr,
 		SortKeys:        *sortPtr,
+		SilentMode:      *silentPtr,
 		CopyToClipboard: *clipboardPtr,
+		SaveToDir:       *saveDirPtr,
 		OutputDir:       *outputDirPtr,
 		TrustAllURLs:    *trustPtr,
 		MaxMemoryMB:     defaultCfg.MaxMemoryMB,
@@ -164,7 +169,11 @@ func getInput(trustAllURLs bool) ([]byte, error) {
 	input := strings.TrimSpace(args[0])
 
 	// 1. URL Handling
-	if strings.HasPrefix(input, "http://") || strings.HasPrefix(input, "https://") {
+	inputURL, err := url.Parse(input)
+	if err != nil {
+		return nil, fmt.Errorf("input is not a valid URL")
+	}
+	if inputURL != nil {
 		// Security prompt for URLs unless trust-all is enabled
 		if !trustAllURLs {
 			fmt.Printf("Do you trust the URL: %s? [y/n] ", input)

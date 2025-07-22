@@ -1,0 +1,57 @@
+version: "2"
+run:
+  modules-download-mode: readonly
+linters:
+  enable:
+    - errcheck
+    - govet
+    - staticcheck
+    - unused
+    - nilnil
+    - nakedret
+    - gocognit
+    - nestif
+    - maintidx
+    - ireturn
+    - depguard
+  settings:
+    errcheck:
+      exclude-functions:
+        - (io.Closer).Close
+    depguard:
+      rules:
+        main:
+          files:
+            - $all
+            - '!$test'
+          deny:
+            - pkg: reflect
+              desc: Please don't use reflect package
+  exclusions:
+    generated: lax
+    rules:
+      - linters:
+          - ireturn
+        path: httpclient.go        
+      - linters:
+          - ireturn
+        path: pointerutil.go  
+      - linters:
+          - ireturn
+        path: infra.go          
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+formatters:
+  enable:
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
