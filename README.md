@@ -1,10 +1,10 @@
 # fj - formatjson
 
-A command-line utility to format JSON code from sources like URLs, CLI or file with the result getting beautified and automatically copied to the clipboard.
+I built this simple program to be able to parse JSON without the use of an online tool, even better if it used the terminal. So I built it.
 
 ## Features
 
-- Format JSON from files, URLs, or standard input
+- Format JSON from files, URLs, pipes or standard input
 - Customize indentation spaces
 - Sort object keys
 - Automatic clipboard integration
@@ -41,6 +41,8 @@ go install ./cmd/fj
 
 ### Building the Project
 
+Note: tests at the moment are a WIP, I will update them whenever they are ready and well integrated for all platforms.
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/nicolasalberti00/fj.git
@@ -56,24 +58,6 @@ go install ./cmd/fj
    ```bash
    go test ./...
    ```
-
-### Running the Application
-
-After building, you can run the application using:
-
-```bash
-# Format JSON from a file
-fj path/to/file.json
-
-# Format JSON from a URL
-fj https://example.com/data.json
-
-# Format JSON from stdin
-echo '{"name": "test"}' | fj
-
-# Format with custom options
-fj -indent 4 -sort path/to/file.json
-```
 
 ## Usage
 
@@ -114,9 +98,8 @@ fj -indent 4 -sort -save-config
 ## Configuration
 
 fj uses a configuration file stored in:
-- Windows: `%APPDATA%\fj\config.json`
-- macOS: `~/Library/Application Support/fj/config.json`
-- Linux: `~/.config/fj/config.json`
+- Windows: `%USERPROFILE%\fj\config.json`
+- macOS and Linux: `~/.config/fj/config.json`
 
 You can save your preferred settings using the `-save-config` flag.
 
@@ -134,4 +117,6 @@ MIT License
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please feel free to submit an issue and/or a Pull Request!
+
+Thanks for the interest and happy formatting!
