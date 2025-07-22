@@ -12,9 +12,9 @@ import (
 	"strings"
 	"time"
 
-	"fj/pkg/clipboard"
-	"fj/pkg/config"
-	"fj/pkg/formatter"
+	"github.com/nicolasalberti00/fj/pkg/clipboard"
+	"github.com/nicolasalberti00/fj/pkg/config"
+	"github.com/nicolasalberti00/fj/pkg/formatter"
 )
 
 const (

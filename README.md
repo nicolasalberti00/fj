@@ -108,7 +108,6 @@ You can save your preferred settings using the `-save-config` flag.
 - Interactive mode
 - JSON diff functionality
 - JSON schema validation
-- Memory and processor usage limits
 - Internationalization support
 
 ## License
