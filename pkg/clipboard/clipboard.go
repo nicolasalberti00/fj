@@ -29,7 +29,7 @@ func Copy(text string) error {
 	cmd.Stdin = bytes.NewBufferString(text)
 
 	if err := cmd.Run(); err != nil {
-		return fmt.Errorf("could not copy to clipboard: %w", err)
+		return fmt.Errorf("could not copy to clipboard: msg = %v", err.Error())
 	}
 
 	return nil
