@@ -125,10 +125,6 @@ func parseFlags(defaultCfg config.Config) config.Config {
 		CopyToClipboard: *clipboardPtr,
 		OutputDir:       *outputDirPtr,
 		TrustAllURLs:    *trustPtr,
-		MaxMemoryMB:     defaultCfg.MaxMemoryMB,
-		MaxProcessors:   defaultCfg.MaxProcessors,
-		LogToFile:       defaultCfg.LogToFile,
-		LogFilePath:     defaultCfg.LogFilePath,
 	}
 
 	// Save config if requested

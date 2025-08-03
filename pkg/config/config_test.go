@@ -43,10 +43,6 @@ func TestSaveAndLoadConfig(t *testing.T) {
 		CopyToClipboard: false,
 		OutputDir:       "/test/output",
 		TrustAllURLs:    true,
-		MaxMemoryMB:     1024,
-		MaxProcessors:   2,
-		LogToFile:       true,
-		LogFilePath:     "/test/log.txt",
 	}
 
 	// Override getConfigPath for testing
@@ -89,19 +85,4 @@ func TestSaveAndLoadConfig(t *testing.T) {
 		t.Errorf("LoadConfig().TrustAllURLs = %v, want %v", loadedCfg.TrustAllURLs, testCfg.TrustAllURLs)
 	}
 
-	if loadedCfg.MaxMemoryMB != testCfg.MaxMemoryMB {
-		t.Errorf("LoadConfig().MaxMemoryMB = %v, want %v", loadedCfg.MaxMemoryMB, testCfg.MaxMemoryMB)
-	}
-
-	if loadedCfg.MaxProcessors != testCfg.MaxProcessors {
-		t.Errorf("LoadConfig().MaxProcessors = %v, want %v", loadedCfg.MaxProcessors, testCfg.MaxProcessors)
-	}
-
-	if loadedCfg.LogToFile != testCfg.LogToFile {
-		t.Errorf("LoadConfig().LogToFile = %v, want %v", loadedCfg.LogToFile, testCfg.LogToFile)
-	}
-
-	if loadedCfg.LogFilePath != testCfg.LogFilePath {
-		t.Errorf("LoadConfig().LogFilePath = %v, want %v", loadedCfg.LogFilePath, testCfg.LogFilePath)
-	}
 }

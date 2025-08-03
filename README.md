@@ -28,7 +28,7 @@ cd fj
 # Build the binary
 go build -o fj ./cmd/fj
 
-# Install the binary 
+# Install the binary
 go install ./cmd/fj
 ```
 
@@ -44,17 +44,20 @@ go install ./cmd/fj
 Note: tests at the moment are a WIP, I will update them whenever they are ready and well integrated for all platforms.
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/nicolasalberti00/fj.git
    cd fj
    ```
 
 2. Build the project:
+
    ```bash
    go build -o fj ./cmd/fj
    ```
 
 3. Run the tests:
+
    ```bash
    go test ./...
    ```
@@ -98,6 +101,7 @@ fj -indent 4 -sort -save-config
 ## Configuration
 
 fj uses a configuration file stored in:
+
 - Windows: `%USERPROFILE%\fj\config.json`
 - macOS and Linux: `~/.config/fj/config.json`
 
@@ -105,6 +109,7 @@ You can save your preferred settings using the `-save-config` flag.
 
 ## Upcoming Features
 
+- Dedicated website
 - Interactive mode
 - JSON diff functionality
 - JSON schema validation
