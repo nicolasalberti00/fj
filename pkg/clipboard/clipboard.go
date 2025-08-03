@@ -1,10 +1,10 @@
 package clipboard
 
 import (
+	"bytes"
 	"fmt"
 	"os/exec"
 	"runtime"
-	"strings"
 )
 
 // Copy copies text to the system clipboard by using utilities that are present on each platform:
@@ -13,25 +13,22 @@ import (
 // - xclip for Linux
 // This part could be adjusted in the config in a next release to let the user choose which program to use.
 func Copy(text string) error {
-
-	var copyProgram string
+	var cmd *exec.Cmd
 
 	switch runtime.GOOS {
 	case "darwin":
-		copyProgram = "pbcopy"
+		cmd = exec.Command("pbcopy")
 	case "windows":
-		copyProgram = "clip"
+		cmd = exec.Command("clip")
 	case "linux":
-		copyProgram = "xclip"
+		cmd = exec.Command("xclip", "-selection", "clipboard")
 	default:
 		return fmt.Errorf("unsupported platform: %s", runtime.GOOS)
 	}
 
-	cmd := exec.Command(copyProgram, text)
-	cmd.Stdin = strings.NewReader(text)
+	cmd.Stdin = bytes.NewBufferString(text)
 
-	err := cmd.Run()
-	if err != nil {
+	if err := cmd.Run(); err != nil {
 		return fmt.Errorf("could not copy to clipboard: %w", err)
 	}
 

@@ -16,10 +16,6 @@ type Config struct {
 	CopyToClipboard bool   `json:"copy_to_clipboard"`
 	OutputDir       string `json:"output_dir"`
 	TrustAllURLs    bool   `json:"trust_all_urls"`
-	MaxMemoryMB     int    `json:"max_memory_mb"`
-	MaxProcessors   int    `json:"max_processors"`
-	LogToFile       bool   `json:"log_to_file"`
-	LogFilePath     string `json:"log_file_path"`
 }
 
 // DefaultConfig returns the default configuration
@@ -32,13 +28,9 @@ func DefaultConfig() Config {
 	return Config{
 		IndentSpaces:    2,
 		SortKeys:        false,
-		CopyToClipboard: false,
+		CopyToClipboard: true,
 		OutputDir:       filepath.Join(homeDir, "fj_output"),
 		TrustAllURLs:    false,
-		MaxMemoryMB:     0, // 0 means no limit
-		MaxProcessors:   0, // 0 means use all available
-		LogToFile:       false,
-		LogFilePath:     filepath.Join(homeDir, ".fj", "fj.log"),
 	}
 }
 
